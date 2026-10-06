@@ -32,22 +32,35 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Fullname</th>
-                    <th scope="col">Email</th>
+                    <th scope="col">Age</th>
                     <th scope="col">Address</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>
-                        <button class="btn btn-warning">Edit</button>
-                        <button class="btn btn-danger">Delete</button>
-                    </td>
-                </tr>
+                <% userList.forEach((user, index)=> { %>
+                    <tr>
+                        <th scope="row">
+                            <%= index + 1 %>
+                        </th>
+                        <td>
+                            <%= user.fullname %>
+                        </td>
+                        <td>
+                            <%= user.age %>
+                        </td>
+                        <td>
+                            <%= user.address %>
+                        </td>
+                        <td class="d-flex justify-content-start gap-2">
+                            <a href="/user/<%= user.id %>" class="btn btn-warning">Edit</a>
+                            <form class="m-0" action="/destroy-user/<%= user.id %>" method="post"
+                                onsubmit="return confirm(`Delete?`) == true">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% }); %>
             </tbody>
         </table>
     </main>

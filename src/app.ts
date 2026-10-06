@@ -1,6 +1,7 @@
 import express from 'express';
 import 'dotenv/config';
 import webRoutes from './routes/web';
+import getConnection from './config/database';
 
 const app = express();
 const port = process.env.PORT;
@@ -18,6 +19,7 @@ app.set('view engine', 'ejs');
 // config router
 webRoutes(app);
 
+// app listening
 app.listen(port, () => {
     console.log(`My app is running with port: ${port}`);
 });
