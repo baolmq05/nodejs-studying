@@ -3,6 +3,7 @@ import { handleCreateUser, handleDestroyUser, handleGetUsers, handleUpdateUser, 
 
 const renderUserList = async (req: Request, res: Response): Promise<void> => {
     const userList = await handleGetUsers();
+
     return res.render('index', { userList: userList });
 }
 
@@ -16,11 +17,11 @@ const storeUser = async (req: Request, res: Response): Promise<void> => {
     // Service Layer
     const result = await handleCreateUser(fullname, age, address.trim());
 
-    if (result != null || result) {
-        res.redirect('/');
+    if (result) {
+        return res.redirect('/');
     }
 
-    res.redirect('/create-user');
+    return res.redirect('/create-user');
 }
 
 const renderUserDetail = async (req: Request<{ id: string }>, res: Response) => {
@@ -38,11 +39,11 @@ const updateUser = async (req: Request<{ id: string }>, res: Response) => {
     // Service Layer
     const result = await handleUpdateUser(fullname, age, address.trim(), id);
 
-    if (result != null || result) {
-        res.redirect('/');
+    if (result) {
+        return res.redirect('/');
     }
 
-    res.redirect('/');
+    return res.redirect('/');
 }
 
 const destroyUser = async (req: Request, res: Response) => {
@@ -55,6 +56,7 @@ const destroyUser = async (req: Request, res: Response) => {
         return res.redirect('/');
     } else {
         console.log(result);
+        return res.redirect('/');
     }
 }
 

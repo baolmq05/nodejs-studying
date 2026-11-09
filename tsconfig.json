@@ -6,7 +6,7 @@
     "sourceMap": true,
     "skipLibCheck": true,
     "outDir": "dist",
-    "rootDir": "src",
+    "rootDir": ".",
     "paths": {
       "config/*": [
         "./src/config/*"
